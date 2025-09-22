@@ -1,0 +1,5 @@
+Как пользоватся приложением:
+1. В косоле прописываешь ./mvnw clean package 
+2.Далее там же прописываешь docker-compose up --build
+3.Далее переходишь по ссылке http://localhost:8080/swagger-ui/index.html
+4. Начинаешь пользоватся
