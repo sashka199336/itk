@@ -1,0 +1,45 @@
+
+
+services:
+  db:
+    image: postgres:16
+    container_name: wallet-db
+    environment:
+      POSTGRES_DB: itk
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data/pgdata
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wallet-app
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/itk
+      DB_USER: postgres
+      DB_PASSWORD: 1
+      SERVER_PORT: 8080
+      DB_POOL_SIZE: 40
+      DB_ISOLATION: 8
+      SHOW_SQL: "true"
+      HIBERNATE_DDL_AUTO: none
+      LIQUIBASE_CHANGELOG: classpath:db/changelog/db.changelog-master.yaml
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+volumes:
+  postgres-data:

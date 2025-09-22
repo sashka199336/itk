@@ -1,0 +1,87 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: you
+      changes:
+        - createTable:
+            tableName: wallet
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: balance
+                  type: bigint
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 2
+      author: you
+      changes:
+        - insert:
+            tableName: wallet
+            columns:
+              - column: { name: id, value: "c9d7741a-f50c-4f9d-9042-333377009678" }
+              - column: { name: balance, value: 0 }
+        - insert:
+            tableName: wallet
+            columns:
+              - column: { name: id, value: "56603b27-84d6-425e-bb8b-8359a511e848" }
+              - column: { name: balance, value: 0 }
+        - insert:
+            tableName: wallet
+            columns:
+              - column: { name: id, value: "35f7ac74-df8d-4acd-9ed8-adb354e4238c" }
+              - column: { name: balance, value: 0 }
+        - insert:
+            tableName: wallet
+            columns:
+              - column: { name: id, value: "e88eee44-6f10-4f7c-af13-93ffa2436124" }
+              - column: { name: balance, value: 0 }
+        - insert:
+            tableName: wallet
+            columns:
+              - column: { name: id, value: "297b5bd3-ffa7-485a-bea2-49b8982ecd8d" }
+              - column: { name: balance, value: 0 }
+        - insert:
+            tableName: wallet
+            columns:
+              - column: { name: id, value: "a4018fc2-0890-40cf-8a89-25cac91ad8be" }
+              - column: { name: balance, value: 0 }
+        - insert:
+            tableName: wallet
+            columns:
+              - column: { name: id, value: "1870b689-9077-4fd5-bac4-297deaedf377" }
+              - column: { name: balance, value: 0 }
+        - insert:
+            tableName: wallet
+            columns:
+              - column: { name: id, value: "87bcb17a-7989-46e1-b7a6-e2e5c7d66acf" }
+              - column: { name: balance, value: 0 }
+        - insert:
+            tableName: wallet
+            columns:
+              - column: { name: id, value: "5de0f0e8-ddd5-47a3-b9b2-26da9115ca76" }
+              - column: { name: balance, value: 0 }
+        - insert:
+            tableName: wallet
+            columns:
+              - column: { name: id, value: "6a8c2e89-9850-4e0b-82a3-d4b7350cc26a" }
+              - column: { name: balance, value: 0 }
+
+  - changeSet:
+      id: 3
+      author: bro
+      changes:
+        - addColumn:
+            tableName: wallet
+            columns:
+              - column:
+                  name: version
+                  type: BIGINT
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false

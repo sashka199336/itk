@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://db:5432/itk}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:1}
+    hikari:
+      maximumPoolSize: ${DB_POOL_SIZE:40}
+      connectionTimeout: ${DB_CONNECTION_TIMEOUT:30000}
+      idleTimeout: ${DB_IDLE_TIMEOUT:600000}
+      maxLifetime: ${DB_MAX_LIFETIME:1800000}
+  jpa:
+    hibernate:
+      ddl-auto: ${HIBERNATE_DDL_AUTO:none}
+    show-sql: ${SHOW_SQL:true}
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+      hibernate.connection.isolation: ${DB_ISOLATION:2}
+      hibernate.format_sql: true
+      hibernate.order_updates: true
+      hibernate.jdbc.batch_size: ${JPA_BATCH_SIZE:25}
+  liquibase:
+    change-log: ${LIQUIBASE_CHANGELOG:classpath:db/changelog/db.changelog-master.yaml}
+
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: ${SERVER_CONTEXT_PATH:/}
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    org.hibernate: WARN
+    org.springframework: DEBUG
+    com.example.itk: DEBUG
